@@ -27,6 +27,7 @@ interface ExamResult {
   questions: QuestionResult[]
 }
 
+
 export default function ResultPage() {
   const params = useParams()
   const router = useRouter()
@@ -35,6 +36,7 @@ export default function ResultPage() {
   const [result, setResult] = useState<ExamResult | null>(null)
   const [loading, setLoading] = useState(true)
 
+    // Check if user is logged in and fetch result on component mount
   useEffect(() => {
     const userData = localStorage.getItem("user")
     if (!userData) {
@@ -45,6 +47,7 @@ export default function ResultPage() {
     fetchResult()
   }, [resultId, router])
 
+    // Fetch result data from localStorage or API
   const fetchResult = async () => {
     try {
       // First try to get from localStorage (for just submitted results)
@@ -70,18 +73,21 @@ export default function ResultPage() {
     }
   }
 
+    // Helper functions for formatting
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${mins}m ${secs}s`
   }
 
+    // Helper functions for score display
   const getScoreColor = (percentage: number) => {
     if (percentage >= 80) return "text-green-600"
     if (percentage >= 60) return "text-yellow-600"
     return "text-red-600"
   }
 
+    // Helper function to determine score badge
   const getScoreBadge = (percentage: number) => {
     if (percentage >= 80) return { variant: "default" as const, text: "Excellent" }
     if (percentage >= 60) return { variant: "secondary" as const, text: "Good" }

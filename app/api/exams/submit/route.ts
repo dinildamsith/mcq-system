@@ -115,6 +115,14 @@ const examQuestions = {
   },
 }
 
+/**
+ * Handles exam submission requests.
+ * Expects a JSON body with 'examId', 'userId', 'answers', and 'timeSpent'.
+ * Returns the exam result including score, percentage, and question details.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {NextResponse} - The response object containing the exam result or error message.
+ */
 export async function POST(request: NextRequest) {
   try {
     const { examId, userId, answers, timeSpent } = await request.json()

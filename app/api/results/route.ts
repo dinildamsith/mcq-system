@@ -4,6 +4,7 @@ import { type NextRequest, NextResponse } from "next/server"
 // This should be the same array as in submit/route.ts
 const results: any[] = []
 
+// Mock results data
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)

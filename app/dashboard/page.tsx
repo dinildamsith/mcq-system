@@ -29,6 +29,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
+  // Check if user is logged in and fetch exams on component mount
   useEffect(() => {
     const userData = localStorage.getItem("user")
     if (!userData) {
@@ -40,6 +41,7 @@ export default function Dashboard() {
     fetchExams()
   }, [router])
 
+  // Fetch available exams from the API
   const fetchExams = async () => {
     try {
       const response = await fetch("/api/exams")
@@ -52,15 +54,18 @@ export default function Dashboard() {
     }
   }
 
+    // Handle user logout
   const handleLogout = () => {
     localStorage.removeItem("user")
     router.push("/")
   }
 
+    // Start an exam by navigating to the exam page
   const startExam = (examId: string) => {
     router.push(`/exam/${examId}`)
   }
 
+  // View results by navigating to the results page
   const viewResults = () => {
     router.push("/results")
   }

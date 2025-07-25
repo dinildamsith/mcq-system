@@ -16,6 +16,14 @@ const users = [
   },
 ]
 
+/**
+ * Handles user login requests.
+ * Expects a JSON body with 'email' and 'password'.
+ * Returns user data if login is successful, otherwise returns an error.
+ *
+ * @param {NextRequest} request - The incoming request object.
+ * @returns {NextResponse} - The response object containing user data or error message.
+ */
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json()

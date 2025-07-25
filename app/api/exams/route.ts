@@ -31,6 +31,7 @@ const exams = [
   },
 ]
 
+// This route returns a list of available exams
 export async function GET() {
   return NextResponse.json({ exams })
 }

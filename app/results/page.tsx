@@ -22,6 +22,7 @@ export default function ResultsPage() {
   const [results, setResults] = useState<ResultSummary[]>([])
   const [loading, setLoading] = useState(true)
 
+    // Check if user is logged in and fetch results on component mount
   useEffect(() => {
     const userData = localStorage.getItem("user")
     if (!userData) {
@@ -32,6 +33,7 @@ export default function ResultsPage() {
     fetchResults()
   }, [router])
 
+    // Fetch results from the API or localStorage
   const fetchResults = async () => {
     try {
       const userData = JSON.parse(localStorage.getItem("user") || "{}")
@@ -45,12 +47,14 @@ export default function ResultsPage() {
     }
   }
 
+    // Format time in minutes and seconds
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${mins}m ${secs}s`
   }
 
+    // Get score badge based on percentage
   const getScoreBadge = (percentage: number) => {
     if (percentage >= 80) return { variant: "default" as const, text: "Excellent", color: "text-green-600" }
     if (percentage >= 60) return { variant: "secondary" as const, text: "Good", color: "text-yellow-600" }

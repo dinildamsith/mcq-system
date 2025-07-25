@@ -37,6 +37,7 @@ export default function ExamPage() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
 
+    // Fetch exam data and user authentication on component mount
   useEffect(() => {
     const userData = localStorage.getItem("user")
     if (!userData) {
@@ -47,6 +48,7 @@ export default function ExamPage() {
     fetchExam()
   }, [examId, router])
 
+    // Handle countdown timer
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
@@ -56,6 +58,7 @@ export default function ExamPage() {
     }
   }, [timeLeft, exam])
 
+    // Fetch exam data from the API
   const fetchExam = async () => {
     try {
       const response = await fetch(`/api/exams/${examId}`)
@@ -70,6 +73,7 @@ export default function ExamPage() {
     }
   }
 
+    // Handle answer selection
   const handleAnswerChange = (questionId: string, optionIndex: number) => {
     setAnswers((prev) => ({
       ...prev,
@@ -77,6 +81,7 @@ export default function ExamPage() {
     }))
   }
 
+    // Handle exam submission
   const handleSubmit = async () => {
     if (submitting) return
 
@@ -108,6 +113,7 @@ export default function ExamPage() {
     }
   }
 
+    // Format time in MM:SS
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60

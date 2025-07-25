@@ -118,6 +118,7 @@ const examQuestions = {
   },
 }
 
+// This file handles the API route for fetching exam questions by ID
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const examId = params.id
   const exam = examQuestions[examId as keyof typeof examQuestions]
