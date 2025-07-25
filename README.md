@@ -279,11 +279,6 @@ npm test
 
 This project is created for educational purposes as part of an internship assignment.
 
-## 📞 Support
-
-For questions or issues:
-- Create an issue in the repository
-- Contact: serendilabs@gmail.com
 
 ## 🎉 Acknowledgments
 
